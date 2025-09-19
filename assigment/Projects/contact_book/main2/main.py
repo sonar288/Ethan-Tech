@@ -40,7 +40,7 @@ def search_by_name(search):
     return [i for i in contacts if sn == i["name"][:len(sn)].lower()]
 
 def search_by_number(search):
-    if len(search) <= 15:
+    if len(search) <= 10:
         return [i for i in contacts if search == str(i["contact"])[:len(search)]]
     else:
         print("Invalid number")
@@ -225,7 +225,8 @@ def delete_the_contact():
 # Main menu
 def main():
     print("Welcome to Contact Application")
-    print(f"""
+    while True:
+        print(f"""
 {'=' * 40}
 1. 👀 View all contacts
 2. 🔍 Search contacts  
@@ -235,27 +236,28 @@ def main():
 6. 🚪 Exit
 {'=' * 40}""")
 
-    user = input("Select the operation you want to perform (1-6): ")
+        user = input("Select the operation you want to perform (1-6): ")
 
-    try:
-        if int(user) == 1:
-            view_contact(contacts)
-        elif int(user) == 2:
-            view_selected_contact()
-        elif int(user) == 3:
-            add_new_contact()
-        elif int(user) == 4:
-            update_contact()
-        elif int(user) == 5:
-            delete_the_contact()
-        elif int(user) == 6:
-            print("Exiting the contact application")  
-        else:
-            print("Select the correct option (1-6)")
-    except ValueError:
-        print("\nSelect the correct option (1-6)")
-    except Exception as e:
-        print(f"Unexpected error: {e}")
+        try: 
+            if int(user) == 1:
+                view_contact(contacts)
+            elif int(user) == 2:
+                view_selected_contact()
+            elif int(user) == 3:
+                add_new_contact()
+            elif int(user) == 4:
+                update_contact()
+            elif int(user) == 5:
+                delete_the_contact()
+            elif int(user) == 6:
+                print("Exiting the contact application")  
+                break
+            else:
+                print("Select the correct option (1-6)")
+        except ValueError:
+            print("\nSelect the correct option (1-6)")
+        except Exception as e:
+            print(f"Unexpected error: {e}")
 
 
 if __name__ == "__main__":
